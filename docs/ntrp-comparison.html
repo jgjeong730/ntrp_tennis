@@ -1,0 +1,274 @@
+<title>NTRP 문항 대조표</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F5F4EF;
+    --surface:#FFFFFF;
+    --surface-2:#ECEBE3;
+    --ink:#181C15;
+    --ink-soft:#565F4E;
+    --ink-faint:#8B9482;
+    --line:#DEDDD1;
+    --accent:#1F6E4C;
+    --accent-soft:#E3EEE3;
+    --lime:#CFE83A;
+    --lime-ink:#33400A;
+    --vercel-ink:#0B1220;
+    --vercel-lime:#D4FB29;
+    --vercel-emerald:#10B981;
+    --shadow: 0 1px 2px rgba(20,28,20,.06), 0 8px 20px -12px rgba(20,28,20,.16);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#10160F; --surface:#181F17; --surface-2:#212B1F;
+      --ink:#EDF1E9; --ink-soft:#A2AD9A; --ink-faint:#69745F; --line:#2B362A;
+      --accent:#5FCB93; --accent-soft:#1C3327; --lime:#E2F35C; --lime-ink:#242C05;
+      --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 26px -14px rgba(0,0,0,.55);
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#10160F; --surface:#181F17; --surface-2:#212B1F;
+    --ink:#EDF1E9; --ink-soft:#A2AD9A; --ink-faint:#69745F; --line:#2B362A;
+    --accent:#5FCB93; --accent-soft:#1C3327; --lime:#E2F35C; --lime-ink:#242C05;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 12px 26px -14px rgba(0,0,0,.55);
+  }
+
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Noto Sans KR',-apple-system,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .disp{ font-family:'Barlow Condensed',sans-serif; }
+  .wrap{ max-width:980px; margin:0 auto; padding:48px 24px 80px; }
+
+  /* ---- header ---- */
+  .kicker{
+    display:flex; align-items:center; gap:8px; margin-bottom:18px;
+  }
+  .kicker .swatch{ width:9px;height:9px;border-radius:50%; }
+  .kicker span{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:12.5px;
+    letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint);
+  }
+  h1{
+    font-family:'Barlow Condensed',sans-serif; font-weight:800; font-size:44px;
+    line-height:1.08; letter-spacing:.002em; margin:0 0 16px; text-wrap:balance;
+  }
+  h1 mark{
+    background:transparent; color:var(--accent);
+    box-shadow: inset 0 -0.3em 0 var(--lime); padding:0 .02em;
+  }
+  .dek{
+    color:var(--ink-soft); font-size:15.5px; line-height:1.7; max-width:66ch; margin:0 0 6px;
+  }
+  .sources{
+    display:flex; flex-wrap:wrap; gap:16px; margin-top:18px; padding-top:18px;
+    border-top:1px dashed var(--line); font-size:12.5px; color:var(--ink-faint);
+  }
+  .sources code{
+    background:var(--surface-2); padding:2px 6px; border-radius:5px;
+    font-family:ui-monospace,'SFMono-Regular',Consolas,monospace; font-size:12px; color:var(--ink-soft);
+  }
+  .src-tag{ display:inline-flex; align-items:center; gap:6px; }
+  .src-tag .dot{ width:7px;height:7px;border-radius:50%; }
+
+  /* ---- section heading ---- */
+  h2{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:22px;
+    letter-spacing:.01em; margin:56px 0 6px;
+  }
+  .section-note{ color:var(--ink-faint); font-size:13px; line-height:1.6; margin:0 0 20px; max-width:70ch; }
+
+  /* ---- overview stat table ---- */
+  .stat-table{
+    width:100%; border-collapse:collapse; background:var(--surface);
+    border:1px solid var(--line); border-radius:14px; overflow:hidden; box-shadow:var(--shadow);
+  }
+  .stat-table th, .stat-table td{
+    padding:13px 16px; text-align:left; font-size:13.5px; line-height:1.55; vertical-align:top;
+    border-bottom:1px solid var(--line);
+  }
+  .stat-table tr:last-child th, .stat-table tr:last-child td{ border-bottom:none; }
+  .stat-table thead th{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:12.5px;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint);
+    background:var(--surface-2); border-bottom:1px solid var(--line);
+  }
+  .stat-table th[scope="row"]{
+    font-weight:600; color:var(--ink-soft); width:19%; white-space:nowrap;
+    background:var(--surface-2);
+  }
+  .colhead{ display:inline-flex; align-items:center; gap:7px; }
+  .colhead .dot{ width:8px;height:8px;border-radius:50%; flex:none; }
+
+  /* ---- comparison table ---- */
+  .table-scroll{ overflow-x:auto; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); }
+  table.cmp{ width:100%; min-width:960px; border-collapse:collapse; background:var(--surface); }
+  table.cmp th, table.cmp td{
+    padding:13px 16px; text-align:left; vertical-align:top; font-size:13.5px; line-height:1.6;
+    border-bottom:1px solid var(--line);
+  }
+  table.cmp thead th{
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:12px;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--ink-faint);
+    background:var(--surface-2); position:sticky; top:0;
+  }
+  table.cmp col.c-axis{ width:15%; }
+  table.cmp col.c-usta{ width:31%; }
+  table.cmp col.c-vercel{ width:31%; }
+  table.cmp col.c-note{ width:23%; }
+  .cat-row th{
+    background:var(--accent-soft); color:var(--accent);
+    font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:12.5px;
+    letter-spacing:.06em; text-transform:uppercase; padding:9px 16px;
+    border-bottom:1px solid var(--line); border-top:1px solid var(--line);
+  }
+  .axis{ font-weight:700; color:var(--ink); }
+  .q-usta{ color:var(--ink); }
+  .q-vercel{ color:var(--ink-soft); }
+  .q-none{ color:var(--ink-faint); font-style:italic; }
+  .note{ color:var(--ink-faint); font-size:12.5px; }
+  table.cmp tbody tr:hover td{ background:var(--surface-2); }
+
+  /* ---- gap callouts ---- */
+  .gaps{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; }
+  @media (max-width:720px){ .gaps{ grid-template-columns:1fr; } }
+  .gap-card{
+    background:var(--surface); border:1px solid var(--line); border-radius:14px;
+    padding:18px 20px; box-shadow:var(--shadow);
+  }
+  .gap-card .gc-head{
+    display:flex; align-items:center; gap:8px; margin-bottom:10px;
+  }
+  .gap-card .dot{ width:8px;height:8px;border-radius:50%; flex:none; }
+  .gap-card .gc-title{ font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:14.5px; }
+  .gap-card ul{ margin:0; padding-left:18px; }
+  .gap-card li{ font-size:13px; line-height:1.65; color:var(--ink-soft); margin-bottom:6px; }
+  .gap-card li b{ color:var(--ink); font-weight:600; }
+
+  footer{
+    margin-top:56px; padding-top:22px; border-top:1px solid var(--line);
+    font-size:12px; color:var(--ink-faint); line-height:1.7;
+  }
+
+  [hidden]{ display:none !important; }
+</style>
+
+<div class="wrap">
+
+  <div class="kicker"><span class="swatch" style="background:var(--accent)"></span><span>질문지 비교 · 2026.09</span></div>
+  <h1>같은 NTRP 진단,<br><mark>문항은 어떻게 달라졌나</mark></h1>
+  <p class="dek">Vercel에 있던 원래 개발자 버전(20문항·일반 리커트 척도)과, USTA 공식 서술 기준을 항목별로 재구성한 현재 버전(24문항)을 항목 단위로 나란히 놓고 무엇이 같고 무엇이 빠지거나 새로 생겼는지 정리했습니다.</p>
+  <div class="sources">
+    <span class="src-tag"><span class="dot" style="background:var(--vercel-lime);box-shadow:0 0 0 1px var(--vercel-ink) inset"></span>원본(Vercel) — <code>ntrp-psi.vercel.app</code></span>
+    <span class="src-tag"><span class="dot" style="background:var(--accent)"></span>USTA 재작성 버전 — <code>heekeunlee.github.io/tennis_ntrp 참고 리디자인, jgjeong730/ntrp_tennis</code></span>
+  </div>
+
+  <h2>한눈에 보는 차이</h2>
+  <p class="section-note">문항 내용에 앞서, 두 버전의 진단 방식 자체가 다릅니다. 원본은 모든 문항에 동일한 5점 척도를 적용하고 영역별 가중치로 점수를 합산하는 반면, 현재 버전은 문항마다 USTA 공식 서술 문장을 직접 답안으로 제시합니다.</p>
+  <table class="stat-table">
+    <thead>
+      <tr>
+        <th scope="col">항목</th>
+        <th scope="col"><span class="colhead"><span class="dot" style="background:var(--vercel-lime);box-shadow:0 0 0 1px var(--vercel-ink) inset"></span>원본 (Vercel)</span></th>
+        <th scope="col"><span class="colhead"><span class="dot" style="background:var(--accent)"></span>USTA 재작성 버전</span></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><th scope="row">문항 수</th><td>20문항</td><td>24문항</td></tr>
+      <tr><th scope="row">카테고리 구성</th><td>5개 — 포핸드·백핸드를 하나로 묶고, 실전 경기력(멘탈·에러관리·복식)을 별도 영역으로 분리</td><td>6개 — 포핸드·백핸드를 분리하고, 리턴을 서브에서 독립시킴. 멘탈·에러관리는 별도 영역 없음</td></tr>
+      <tr><th scope="row">답안(옵션) 방식</th><td>전 문항 공통 5점 리커트: "전혀 못한다 → 가끔 가능 → 어느 정도 가능 → 안정적으로 가능 → 실전에서 의도적 구사"</td><td>문항별 맞춤 5문장: USTA 서술 기준을 그대로 옮긴 레벨별(2.0/3.0/3.5/4.0/5.0) 구체적 묘사문</td></tr>
+      <tr><th scope="row">채점 방식</th><td>영역 평균 → 가중합(스트로크 30%·서브 25%·실전경기력 25%·전술 10%·네트 10%) → 코어앵커 조건으로 2.0~5.0 사이 7단계(0.5 간격) 매핑</td><td>24문항 레벨 값 단순평균 → 가장 가까운 0.5 단위로 반올림. 2.0/3.0/3.5/4.0/5.0 5단계만 사용(2.5·4.5는 세부 기준 부재로 제외)</td></tr>
+      <tr><th scope="row">결과 화면</th><td>레이더 차트, 카테고리별 별점, 강점·약점 2개씩, 플레이 유형 6종, 다음 레벨 미션 3가지, html2canvas 이미지 저장, localStorage 이력 저장</td><td>카테고리별 막대 브레이크다운, 플레이 유형 태그 1개(6종), 세부 축 점수 노출, URL 쿼리스트링 공유 링크</td></tr>
+      <tr><th scope="row">근거 표기</th><td>"USTA NTRP 가이드라인 기반"이라고만 명시, 문항 자체는 자체 창작 문장</td><td>각 문항이 USTA <i>General Characteristics</i> 공식 서술을 그대로 재구성했다고 출처 명시</td></tr>
+      <tr><th scope="row">소요 시간 안내</th><td>약 2분</td><td>약 4~5분</td></tr>
+    </tbody>
+  </table>
+
+  <h2>항목별 문항 대조</h2>
+  <p class="section-note">USTA 재작성 버전의 6개 카테고리 · 24개 세부 항목을 기준으로 정렬했습니다. 원본에 대응하는 문항이 없으면 <span class="q-none">대응 문항 없음</span>으로 표시했습니다.</p>
+  <div class="table-scroll">
+    <table class="cmp">
+      <colgroup>
+        <col class="c-axis"><col class="c-usta"><col class="c-vercel"><col class="c-note">
+      </colgroup>
+      <thead>
+        <tr>
+          <th scope="col">세부 항목</th>
+          <th scope="col">USTA 재작성 버전 문항</th>
+          <th scope="col">원본(Vercel) 대응 문항</th>
+          <th scope="col">비고</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="cat-row"><th colspan="4">포핸드</th></tr>
+        <tr><td class="axis">스윙 완성도</td><td class="q-usta">스윙 동작 완성도(준비 자세~재현성)를 5단계 서술로 진단</td><td class="q-vercel">"포핸드 랠리를 중립 속도에서 10구 이상 안정적으로 이어갈 수 있습니까?"</td><td class="note">원본의 랠리 지속력 질문과 대체로 대응</td></tr>
+        <tr><td class="axis">방향 컨트롤</td><td class="q-usta">원하는 코스로 보내는 방향 의도·정확도를 5단계로 진단</td><td class="q-none">대응 문항 없음</td><td class="note">원본은 포핸드 방향성을 별도로 묻지 않음</td></tr>
+        <tr><td class="axis">깊이·파워 조절</td><td class="q-usta">깊이·파워·터치를 상황에 맞게 조절하는 능력을 5단계로 진단</td><td class="q-vercel">"탑스핀·슬라이스 회전과 베이스라인 깊이를 의도적으로 조절하여 공격/수비를 나눌 수 있습니까?" (스핀과 통합 질문)</td><td class="note">원본은 깊이·스핀을 한 문항에 합쳐서 물음</td></tr>
+        <tr><td class="axis">스핀·공격적 활용</td><td class="q-usta">탑스핀 등 스핀을 이용한 공격 전환·패싱샷 능력을 5단계로 진단</td><td class="q-vercel">위와 동일 문항(스핀·깊이 통합)</td><td class="note">동일</td></tr>
+
+        <tr class="cat-row"><th colspan="4">백핸드</th></tr>
+        <tr><td class="axis">그립·준비 자세</td><td class="q-usta">백핸드 그립·준비 동작의 안정성을 5단계로 진단</td><td class="q-none">대응 문항 없음</td><td class="note">원본에 그립·준비자세 항목 자체가 없음</td></tr>
+        <tr><td class="axis">방향 컨트롤</td><td class="q-usta">백핸드로 원하는 코스(크로스/다운더라인)를 보내는 능력을 5단계로 진단</td><td class="q-vercel">"백핸드로 들어오는 공을 원하는 방향(크로스/다운더라인)으로 의도하여 보낼 수 있습니까?"</td><td class="note">거의 동일한 질문</td></tr>
+        <tr><td class="axis">압박 상황 안정성</td><td class="q-usta">빠르고 높은 공 등 어려운 상황에서의 백핸드 안정성을 5단계로 진단</td><td class="q-vercel">"상대의 깊고 빠른 스트로크에도 밀리지 않고 안정적인 타점으로 리턴 스트로크가 가능합니까?" (포·백 공통 질문)</td><td class="note">원본은 포핸드·백핸드 구분 없이 하나로 물음</td></tr>
+        <tr><td class="axis">파워·스핀 활용</td><td class="q-usta">백핸드에서 파워·스핀을 무기로 쓰는 수준을 5단계로 진단</td><td class="q-none">대응 문항 없음</td><td class="note">원본은 백핸드 전용 파워·스핀 문항이 없음(포핸드 문항에 통합)</td></tr>
+
+        <tr class="cat-row"><th colspan="4">서브</th></tr>
+        <tr><td class="axis">토스·동작 완성도</td><td class="q-usta">토스·동작의 리듬과 일관성을 5단계로 진단</td><td class="q-none">대응 문항 없음</td><td class="note">원본은 동작 자체보다 코스 성공률을 물음</td></tr>
+        <tr><td class="axis">더블폴트·일관성</td><td class="q-usta">더블폴트 빈도와 인·아웃 일관성을 5단계로 진단</td><td class="q-vercel">"더블폴트 위험 없이 스핀/슬라이스를 활용해 세컨드 서브를 안정적으로 연속 성공시킬 수 있습니까?"</td><td class="note">거의 동일한 질문</td></tr>
+        <tr><td class="axis">파워</td><td class="q-usta">퍼스트 서브의 파워 수준과 조절력을 5단계로 진단</td><td class="q-none">대응 문항 없음</td><td class="note">원본은 파워를 독립 항목으로 묻지 않음</td></tr>
+        <tr><td class="axis">세컨서브·코스 배치</td><td class="q-usta">세컨서브 스핀 활용과 상대 약점을 노린 코스 배치를 5단계로 진단</td><td class="q-vercel">"플랫, 슬라이스, 킥(탑스핀) 서브의 구질과 속도 변화를 상황에 맞게 구사할 수 있습니까?" / "퍼스트 서브를 60% 이상의 성공률로 원하는 코스에 넣을 수 있습니까?"</td><td class="note">원본의 구질 다양성 + 코스 성공률 두 문항이 걸쳐 있음</td></tr>
+
+        <tr class="cat-row"><th colspan="4">리턴</th></tr>
+        <tr><td class="axis">컨택·일관성</td><td class="q-usta">서브 리턴 컨택 자체의 안정성을 5단계로 진단</td><td class="q-vercel">"상대의 강력하거나 각도 깊은 서브를 안정적으로 상대 코트 깊숙이 리턴할 수 있습니까?"</td><td class="note">원본은 리턴을 이 한 문항으로만 다룸</td></tr>
+        <tr><td class="axis">서브 속도 대응력</td><td class="q-usta">서브 페이스(느림~강력)별 대응력을 5단계로 진단</td><td class="q-vercel">위와 동일 문항에서 "강력한" 부분과 겹침</td><td class="note">원본 문항 1개가 컨택·속도·깊이 3개 축을 동시에 포괄</td></tr>
+        <tr><td class="axis">깊이·코스 조절</td><td class="q-usta">리턴의 깊이·코스·스핀 조절력을 5단계로 진단</td><td class="q-vercel">위와 동일 문항에서 "코트 깊숙이" 부분과 겹침</td><td class="note">〃</td></tr>
+        <tr><td class="axis">상황별 리턴 전술</td><td class="q-usta">싱글·더블, 공격형·완급조절형 등 상황별 리턴 전술을 5단계로 진단</td><td class="q-none">대응 문항 없음</td><td class="note">원본에 리턴 전술 세분화 없음</td></tr>
+
+        <tr class="cat-row"><th colspan="4">발리</th></tr>
+        <tr><td class="axis">네트 적극성·풋워크</td><td class="q-usta">네트 플레이 적극성과 풋워크를 5단계로 진단</td><td class="q-vercel">"어프로치 샷을 치거나 찬스가 왔을 때 주저 없이 네트로 전진하여 포인트를 마무리할 수 있습니까?"</td><td class="note">거의 동일한 질문</td></tr>
+        <tr><td class="axis">포핸드 발리</td><td class="q-usta">포핸드 발리의 방향·깊이·컨트롤을 5단계로 진단</td><td class="q-vercel">"포핸드 및 백핸드 기본 발리를 면을 살려 안정적인 깊이로 처리할 수 있습니까?" (포·백 통합 질문)</td><td class="note">원본은 포·백 발리를 한 문항으로 물음</td></tr>
+        <tr><td class="axis">백핸드 발리</td><td class="q-usta">백핸드 발리의 방향·깊이·컨트롤을 5단계로 진단</td><td class="q-vercel">위와 동일 문항(포·백 통합)</td><td class="note">〃</td></tr>
+        <tr><td class="axis">어려운 공 처리</td><td class="q-usta">낮고 넓은 공 등 어려운 발리 상황 대응력을 5단계로 진단</td><td class="q-vercel">"네트 바로 앞에서 상대의 빠른 패싱샷이나 바디 공격에 반사적으로 라켓을 대고 제어할 수 있습니까?"</td><td class="note">거의 동일한 질문</td></tr>
+
+        <tr class="cat-row"><th colspan="4">경기 운영</th></tr>
+        <tr><td class="axis">코트 포지셔닝</td><td class="q-usta">싱글·더블 상황에 맞는 코트 포지셔닝을 5단계로 진단</td><td class="q-none">대응 문항 없음</td><td class="note">원본에 포지셔닝 단독 질문 없음(복식 포지셔닝과는 결이 다름)</td></tr>
+        <tr><td class="axis">랠리·코트 커버리지</td><td class="q-usta">코트 커버리지와 랠리 주도력을 5단계로 진단</td><td class="q-vercel">"비슷한 레벨의 상대와의 실전 경기에서 단순 넘기기가 아닌 의도된 패턴으로 포인트를 만들어냅니까?"</td><td class="note">원본은 "실전 경기력" 영역의 질문</td></tr>
+        <tr><td class="axis">더블스 팀워크</td><td class="q-usta">더블스 파트너와의 팀워크 수준을 5단계로 진단</td><td class="q-vercel">"복식 경기 시 파트너와의 움직임 연계, 시선 처리, 포칭 및 센터 커버를 원활하게 수행합니까?"</td><td class="note">거의 동일한 질문</td></tr>
+        <tr><td class="axis">전략·게임 플랜</td><td class="q-usta">확률 높은 테니스, 상대에 따른 전략 전환 능력을 5단계로 진단</td><td class="q-vercel">"상대의 취약한 코스나 약점을 파악하고 집중 공략합니까?" + "상대방의 플레이 스타일에 맞춰 경기 플랜을 능동적으로 바꿀 수 있습니까?" (2문항 통합)</td><td class="note">원본의 전술 관련 2문항이 이 축 하나로 요약됨</td></tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <h2>서로 없는 항목</h2>
+  <div class="gaps">
+    <div class="gap-card">
+      <div class="gc-head"><span class="dot" style="background:var(--vercel-lime);box-shadow:0 0 0 1px var(--vercel-ink) inset"></span><span class="gc-title">원본에는 있지만 USTA 버전엔 없음</span></div>
+      <ul>
+        <li><b>오버헤드 스매시</b> — 로브 처리 후 결정적 스매시 득점력</li>
+        <li><b>클러치 상황 멘탈</b> — 브레이크포인트·듀스 등 승부처에서의 에러 관리</li>
+        <li><b>실전 재현율</b> — 연습·레슨 폼을 실전 매치에서 얼마나 발휘하는지</li>
+        <li><b>언포스드 에러 관리</b> — 게임당 자책성 실수를 통제하는 능력</li>
+      </ul>
+    </div>
+    <div class="gap-card">
+      <div class="gc-head"><span class="dot" style="background:var(--accent)"></span><span class="gc-title">USTA 버전에는 있지만 원본엔 없음</span></div>
+      <ul>
+        <li><b>백핸드 그립·준비 자세</b> · <b>백핸드 파워·스핀 활용</b> — 원본은 포·백을 통합 질문으로 처리</li>
+        <li><b>포핸드 방향 컨트롤</b> · <b>서브 토스·동작 완성도</b> · <b>서브 파워</b> — 원본에 없는 세부 축</li>
+        <li><b>리턴 상황별 전술</b> — 원본은 리턴을 문항 1개로만 다룸(현재 버전은 4개 축으로 세분화)</li>
+        <li><b>코트 포지셔닝</b> — 원본은 복식 포지셔닝만 다루고 일반 포지셔닝은 없음</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    두 버전 모두 미국테니스협회(USTA) NTRP 가이드라인을 참고했다고 명시하지만, 문항을 만든 방식은 다릅니다 — 원본은 실전 상황을 자체적으로 문장화했고, 현재 버전은 USTA <i>General Characteristics of NTRP Playing Levels</i>의 항목별 공식 서술을 직접 재구성했습니다. 이 표는 두 소스 코드(HTML 인라인 스크립트)를 직접 대조해 정리한 것으로, 두 진단 모두 참고용 자가평가이며 공식 USTA 인증 레이팅이 아닙니다.
+  </footer>
+
+</div>
